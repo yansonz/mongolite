@@ -64,6 +64,8 @@ SEXP ConvertValue(bson_iter_t* iter){
     return res == NA_INTEGER ? ScalarReal(res) : ScalarInteger(res);
   } else if(BSON_ITER_HOLDS_NULL(iter)){
     return R_NilValue;
+  } else if(BSON_ITER_HOLDS_UNDEFINED(iter)){
+    return R_NilValue;
   } else if(BSON_ITER_HOLDS_BOOL(iter)){
     return ScalarLogical(bson_iter_bool(iter));
   } else if(BSON_ITER_HOLDS_DOUBLE(iter)){
